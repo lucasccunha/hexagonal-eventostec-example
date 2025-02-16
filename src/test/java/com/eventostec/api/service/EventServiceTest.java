@@ -4,7 +4,7 @@ import com.eventostec.api.application.service.AddressService;
 import com.eventostec.api.application.service.CouponService;
 import com.eventostec.api.application.service.EventService;
 import com.eventostec.api.domain.event.*;
-import com.eventostec.api.adapters.output.repositories.EventRepository;
+import com.eventostec.api.adapters.output.repositories.JpaEventRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -41,7 +41,7 @@ class EventServiceTest {
     private CouponService couponService;
 
     @Mock
-    private EventRepository repository;
+    private JpaEventRepository repository;
 
     @InjectMocks
     private EventService eventService;

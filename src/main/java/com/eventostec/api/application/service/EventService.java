@@ -4,7 +4,7 @@ import com.eventostec.api.domain.address.Address;
 import com.eventostec.api.domain.coupon.Coupon;
 import com.eventostec.api.domain.event.*;
 import com.eventostec.api.utils.mappers.EventMapper;
-import com.eventostec.api.adapters.output.repositories.EventRepository;
+import com.eventostec.api.adapters.output.repositories.JpaEventRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -41,7 +41,7 @@ public class EventService {
     private final S3Client s3Client;
     private final AddressService addressService;
     private final CouponService couponService;
-    private final EventRepository repository;
+    private final JpaEventRepository repository;
 
     @Autowired
     private EventMapper mapper;
