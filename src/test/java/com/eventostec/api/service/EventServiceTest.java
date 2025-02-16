@@ -2,7 +2,7 @@ package com.eventostec.api.service;
 
 import com.eventostec.api.application.service.AddressService;
 import com.eventostec.api.application.service.CouponService;
-import com.eventostec.api.application.service.EventService;
+import com.eventostec.api.application.service.EventServiceImpl;
 import com.eventostec.api.domain.event.*;
 import com.eventostec.api.adapters.output.repositories.JpaEventRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -44,7 +44,7 @@ class EventServiceTest {
     private JpaEventRepository repository;
 
     @InjectMocks
-    private EventService eventService;
+    private EventServiceImpl eventService;
 
     private final String adminKey = "test-admin-key";
     private final String bucketName = "test-bucket";
@@ -52,7 +52,7 @@ class EventServiceTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        eventService = new EventService(s3Client, addressService, couponService, repository);
+        eventService = new EventServiceImpl(s3Client, addressService, couponService, repository);
         // Configurando valores diretamente nos atributos usando ReflectionTestUtils
         ReflectionTestUtils.setField(eventService, "adminKey", adminKey);
         ReflectionTestUtils.setField(eventService, "bucketName", bucketName);
