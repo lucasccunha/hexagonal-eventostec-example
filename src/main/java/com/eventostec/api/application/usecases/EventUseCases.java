@@ -5,20 +5,20 @@ import com.eventostec.api.domain.event.EventDetailsDTO;
 import com.eventostec.api.domain.event.EventRequestDTO;
 import com.eventostec.api.domain.event.EventResponseDTO;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
 public interface EventUseCases {
-    public Event createEvent(EventRequestDTO data);
+    Event createEvent(EventRequestDTO data);
 
-    public List<EventResponseDTO> getUpcomingEvents(int page, int size);
+    List<EventResponseDTO> getUpcomingEvents(int page, int size);
 
-    public EventDetailsDTO getEventDetails(UUID eventId);
+    EventDetailsDTO getEventDetails(UUID eventId);
 
-    public void deleteEvent(UUID eventId, String adminKey);
+    void deleteEvent(UUID eventId, String adminKey);
 
-    public List<EventResponseDTO> searchEvents(String title);
+    List<EventResponseDTO> searchEvents(String title);
 
-    public List<EventResponseDTO> getFilteredEvents(int page, int size, String city, String uf, Date startDate, Date endDate);
+    List<EventResponseDTO> getFilteredEvents(int page, int size, String city, String uf, LocalDate startDate, LocalDate endDate);
 }

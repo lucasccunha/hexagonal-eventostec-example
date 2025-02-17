@@ -1,7 +1,10 @@
 package com.eventostec.api.utils.mappers;
 
 import com.eventostec.api.adapters.output.entities.JpaEventEntity;
+import com.eventostec.api.domain.address.Address;
+import com.eventostec.api.domain.coupon.Coupon;
 import com.eventostec.api.domain.event.Event;
+import com.eventostec.api.domain.event.EventDetailsDTO;
 import com.eventostec.api.domain.event.EventRequestDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -9,6 +12,9 @@ import org.mapstruct.Mappings;
 import org.mapstruct.Named;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
 public interface EventMapper {
@@ -43,6 +49,28 @@ public interface EventMapper {
             @Mapping(source = "jpa.imgUrl", target = "imgUrl"),
     })
     Event jpaToDomain(JpaEventEntity jpa);
+
+    default EventDetailsDTO domainToDetaisDto(Event event, Optional<Address> address, List<Coupon> coupons) {
+        String city = address.map(Address::getCity).orElse("");
+        String uf = address.map(Address::getUf).orElse("");
+        List<EventDetailsDTO.CouponDTO> couponDTOs = coupons.stream()
+                .map(coupon -> new EventDetailsDTO.CouponDTO(
+                        coupon.getCode(),
+                        coupon.getDiscount(),
+                        coupon.getValid()))
+                .collect(Collectors.toList());
+
+        return new EventDetailsDTO(
+                event.getId(),
+                event.getTitle(),
+                event.getDescription(),
+                event.getDate(),
+                city,
+                uf,
+                event.getImgUrl(),
+                event.getEventUrl(),
+                couponDTOs);
+    }
 
     @Named("epochToDate")
     default Date epochToDate(Long timestamp) {

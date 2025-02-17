@@ -19,17 +19,18 @@ import java.util.UUID;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class JpaEventEntity {
-        @Id
-        @GeneratedValue
-        private UUID id;
 
-        private String title;
-        private String description;
-        private String imgUrl;
-        private String eventUrl;
-        private Boolean remote;
-        private Date date;
+public class JpaEventEntity {
+    @Id
+    @GeneratedValue
+    private UUID id;
+
+    private String title;
+    private String description;
+    private String imgUrl;
+    private String eventUrl;
+    private Boolean remote;
+    private Date date;
 
     public JpaEventEntity(Event event) {
         this.id = event.getId();

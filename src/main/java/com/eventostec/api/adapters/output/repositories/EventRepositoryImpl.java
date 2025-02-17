@@ -7,6 +7,7 @@ import com.eventostec.api.domain.event.EventRepository;
 import com.eventostec.api.utils.mappers.EventMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+@Repository
 public class EventRepositoryImpl implements EventRepository {
 
     private final JpaEventRepository jpaEventRepository;
